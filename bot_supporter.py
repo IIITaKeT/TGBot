@@ -12,7 +12,6 @@ def ProdAdd(goods_view_box):
     for prod in goods_view_box:
         prod_name = prod.find('div', class_='goods_view_box-caption').get_text()
         try:
-            # prod_price = re.findall("\w+",prod.find('div', class_='goods_price-item current').get_text())
             prod_price = float(str(prod.find('div', class_='goods_price-item current').get_text()).replace(' ', '').replace(',', '.'))
         except AttributeError:
             prod_price = [0,0]
