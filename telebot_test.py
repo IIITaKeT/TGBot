@@ -2,7 +2,11 @@ import telebot
 import time, re
 import bot_supporter
 
-bot_token = ""
+with open("C:\TGBot_config.txt", 'r') as conf:
+    middle = conf.readline()
+    bot_token = middle.split("=")[1]
+    conf.close()
+
 bot = telebot.TeleBot(bot_token)
 
 @bot.message_handler(commands=['start'])

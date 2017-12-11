@@ -1,7 +1,6 @@
 # -*- coding: cp1251 -*-
 from bs4 import BeautifulSoup
 import requests
-import re
 
 products = {}
 req_head = {"user-agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36"}
@@ -29,7 +28,6 @@ def GetQuery(message):
 
 def Processing():
     global products
-    # price_list = [x[1] for x in products]
     price_list = sorted(products.items(), key=lambda x: x[1])
     max_price, min_price = price_list[len(price_list)-1], price_list[0]
     avg_price = round(sum(products.values())/len(products),2)
