@@ -2,12 +2,18 @@ import telebot
 import time, re
 import bot_supporter
 
-with open("C:\TGBot_config.txt", 'r') as conf:
-    middle = conf.readline()
-    bot_token = middle.split("=")[1]
-    conf.close()
+# with open("C:\TGBot_config.txt", 'r') as conf:
+#     middle = conf.readline()
+#     bot_token = middle.split("=")[1]
+#     conf.close()
 
 bot = telebot.TeleBot(bot_token)
+
+from telebot import apihelper
+apihelper.proxy = {
+    'https' : 'socks5h://telegram:telegram@u0k12.tgproxy.me:1080',
+    'http' : 'socks5h://telegram:telegram@u0k12.tgproxy.me:1080'
+}
 
 @bot.message_handler(commands=['start'])
 def start(massage):
@@ -35,4 +41,5 @@ def repeat_all_messages(message):
     <i>{z[2][0]}</i>
                  """.format(z = answer), parse_mode="HTML")
 
-bot.polling()
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
